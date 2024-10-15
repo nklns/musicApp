@@ -11,6 +11,8 @@ import UIKit
 class WelcomeView: UIView {
     // MARK: - UI Elements
     
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
