@@ -51,20 +51,11 @@ private extension TableViewCell {
     
     func setupAppearance() {
         self.backgroundColor = .clear
-        containerView.backgroundColor = .cyan
-        containerView.layer.cornerRadius = 20
-        containerView.layer.masksToBounds = true
-        
         symbolImageView.contentMode = .scaleAspectFit
         
-        titleLabel.textColor = .black
-        titleLabel.font = .systemFont(ofSize: 13, weight: .bold)
-        titleLabel.numberOfLines = 0
-        descriptionLabel.textColor = .black
-        descriptionLabel.font = .systemFont(ofSize: 11, weight: .regular)
-        descriptionLabel.numberOfLines = 0
-        
-        
+        setupContainerView()
+        setupTitleLabel()
+        setupDescriptionLabel()
     }
     
     func setupLayout() {
@@ -95,5 +86,21 @@ private extension TableViewCell {
 
 
 private extension TableViewCell {
-
+    func setupContainerView() {
+        containerView.backgroundColor = .cyan
+        containerView.layer.cornerRadius = 20
+        containerView.layer.masksToBounds = true
+    }
+    
+    func setupTitleLabel() {
+        titleLabel.textColor = .black
+        titleLabel.font = .systemFont(ofSize: 13, weight: .bold)
+        titleLabel.numberOfLines = 0
+    }
+    
+    func setupDescriptionLabel() {
+        descriptionLabel.textColor = .black
+        descriptionLabel.font = .systemFont(ofSize: 11, weight: .regular)
+        descriptionLabel.numberOfLines = 0
+    }
 }
