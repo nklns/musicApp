@@ -12,6 +12,8 @@ import SnapKit
 class WelcomeView: UIView {
     // MARK: - UI Elements
     
+    let titleLabel = UILabel()
+    
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let gradient = CAGradientLayer()
     
@@ -41,7 +43,7 @@ class WelcomeView: UIView {
 private extension WelcomeView {
     
     func setupViews() {
-        addSubviews(tableView)
+        addSubviews(titleLabel, tableView)
     }
     
     func setupAppearance() {
@@ -49,11 +51,19 @@ private extension WelcomeView {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         
-        setGradient(gradient: gradient)
+        setupTitleLabel()
+        
+        setGradient()
         self.layer.insertSublayer(gradient, at: 0)
     }
     
     func setupLayout() {
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
         tableView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
@@ -64,7 +74,7 @@ private extension WelcomeView {
 }
 
 private extension WelcomeView {
-    func setGradient(gradient: CAGradientLayer) {
+    func setGradient() {
         gradient.colors = [
             UIColor.linearGradientColor1.cgColor,
             UIColor.linearGradientColor2.cgColor,
@@ -73,5 +83,12 @@ private extension WelcomeView {
         gradient.startPoint = .init(x: 0.3, y: 1)
         gradient.endPoint = .init(x: 1, y: 0)
         gradient.locations = [0, 0.7, 1]
+    }
+    
+    func setupTitleLabel() {
+        titleLabel.text = "Слушай музыку\nбесплатно!"
+        titleLabel.font = .systemFont(ofSize: 45, weight: .bold)
+        titleLabel.textColor = .white
+        titleLabel.numberOfLines = 0
     }
 }
