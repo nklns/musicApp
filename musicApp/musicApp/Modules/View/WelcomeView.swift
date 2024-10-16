@@ -13,8 +13,10 @@ class WelcomeView: UIView {
     // MARK: - UI Elements
     
     let titleLabel = UILabel()
-    
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    let buttonLabel = UIButton()
+    
+    // MARK: - Layers
     let gradient = CAGradientLayer()
     
     // MARK: - Initialization
@@ -43,7 +45,7 @@ class WelcomeView: UIView {
 private extension WelcomeView {
     
     func setupViews() {
-        addSubviews(titleLabel, tableView)
+        addSubviews(titleLabel, tableView, buttonLabel)
     }
     
     func setupAppearance() {
@@ -55,6 +57,8 @@ private extension WelcomeView {
         
         setGradient()
         self.layer.insertSublayer(gradient, at: 0)
+        
+        setupButtonLabel()
     }
     
     func setupLayout() {
@@ -69,6 +73,12 @@ private extension WelcomeView {
             $0.centerY.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(300)
+        }
+        
+        buttonLabel.snp.makeConstraints {
+            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            $0.horizontalEdges.equalTo(titleLabel)
+            $0.height.equalTo(54)
         }
     }
 }
@@ -90,5 +100,13 @@ private extension WelcomeView {
         titleLabel.font = .systemFont(ofSize: 45, weight: .bold)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
+    }
+    
+    func setupButtonLabel() {
+        buttonLabel.setTitle("Начать!", for: .normal)
+        buttonLabel.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
+        buttonLabel.backgroundColor = UIColor.button
+        buttonLabel.layer.cornerRadius = 20
+        buttonLabel.layer.masksToBounds = true
     }
 }
