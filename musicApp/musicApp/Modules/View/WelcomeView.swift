@@ -41,14 +41,15 @@ private extension WelcomeView {
     func setupAppearance() {
         self.backgroundColor = .gray
         
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
     }
     
     func setupLayout() {
         tableView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(15)
+            $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(300)
         }
     }

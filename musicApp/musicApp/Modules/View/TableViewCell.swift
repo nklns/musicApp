@@ -9,23 +9,34 @@ import UIKit
 import SnapKit
 
 class TableViewCell: UITableViewCell {
-    let symbolImageView = UIImageView()
+    // MARK: - UI Elements
     
+    let symbolImageView = UIImageView()
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupViews()
         setupAppearance()
         setupLayout()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+extension TableViewCell {
+    // MARK: - Public Methods
+    
+    /// Метод конфигурации ячейки `TableViewCell`
+    func configure(model: CellModel) {
+        self.symbolImageView.image = model.image
+        self.titleLabel.text = model.title
+        self.descriptionLabel.text = model.description
     }
 }
 
@@ -37,19 +48,42 @@ private extension TableViewCell {
     }
     
     func setupAppearance() {
+        self.backgroundColor = .cyan
+        symbolImageView.contentMode = .scaleAspectFit
+        
         titleLabel.textColor = .black
+        titleLabel.font = .systemFont(ofSize: 13, weight: .bold)
+        titleLabel.numberOfLines = 0
         descriptionLabel.textColor = .black
+        descriptionLabel.font = .systemFont(ofSize: 11, weight: .regular)
+        descriptionLabel.numberOfLines = 0
+        
+        
     }
     
     func setupLayout() {
+        symbolImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(16)
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(38)
+            $0.width.equalTo(38)
+        }
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(16)
+            $0.leading.equalTo(symbolImageView.snp.trailing).offset(16)
+            $0.trailing.equalToSuperview().offset(-8)
+        }
         
+        descriptionLabel.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel.snp.leading)
+            $0.trailing.equalTo(titleLabel.snp.trailing)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
+            $0.bottom.equalToSuperview().offset(-16)
+        }
     }
 }
 
-extension TableViewCell {
-    func configureCell(model: CellModel) {
-        self.symbolImageView.image = model.image
-        self.titleLabel.text = model.title
-        self.descriptionLabel.text = model.description
-    }
+
+private extension TableViewCell {
+
 }
