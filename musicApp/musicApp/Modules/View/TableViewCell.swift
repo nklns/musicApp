@@ -11,6 +11,8 @@ import SnapKit
 class TableViewCell: UITableViewCell {
     // MARK: - UI Elements
     
+    
+    let containerView = UIView()
     let symbolImageView = UIImageView()
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
@@ -44,11 +46,16 @@ extension TableViewCell {
 
 private extension TableViewCell {
     func setupViews() {
-        self.addSubviews(symbolImageView, titleLabel, descriptionLabel)
+        self.addSubviews(containerView)
+        containerView.addSubviews(symbolImageView, titleLabel, descriptionLabel)
     }
     
     func setupAppearance() {
-        self.backgroundColor = .cyan
+        self.backgroundColor = .clear
+        containerView.backgroundColor = .cyan
+        containerView.layer.cornerRadius = 20
+        containerView.layer.masksToBounds = true
+        
         symbolImageView.contentMode = .scaleAspectFit
         
         titleLabel.textColor = .black
@@ -62,6 +69,10 @@ private extension TableViewCell {
     }
     
     func setupLayout() {
+        containerView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        
         symbolImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(16)
             $0.centerY.equalToSuperview()
