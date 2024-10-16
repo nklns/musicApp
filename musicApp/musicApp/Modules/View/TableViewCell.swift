@@ -11,11 +11,10 @@ import SnapKit
 class TableViewCell: UITableViewCell {
     // MARK: - UI Elements
     
-    
-    let containerView = UIView()
-    let symbolImageView = UIImageView()
-    let titleLabel = UILabel()
-    let descriptionLabel = UILabel()
+    private let containerView = UIView()
+    private let symbolImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let descriptionLabel = UILabel()
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
