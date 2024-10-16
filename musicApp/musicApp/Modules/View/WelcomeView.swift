@@ -13,7 +13,7 @@ class WelcomeView: UIView {
     // MARK: - UI Elements
     
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
+    let gradient = CAGradientLayer()
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -22,6 +22,12 @@ class WelcomeView: UIView {
         setupViews()
         setupAppearance()
         setupLayout()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        gradient.frame = self.bounds
     }
     
     @available(*, unavailable)
@@ -39,10 +45,12 @@ private extension WelcomeView {
     }
     
     func setupAppearance() {
-        self.backgroundColor = .gray
         
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        
+        setGradient(gradient: gradient)
+        self.layer.insertSublayer(gradient, at: 0)
     }
     
     func setupLayout() {
@@ -52,5 +60,18 @@ private extension WelcomeView {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(300)
         }
+    }
+}
+
+private extension WelcomeView {
+    func setGradient(gradient: CAGradientLayer) {
+        gradient.colors = [
+            UIColor.linearGradientColor1.cgColor,
+            UIColor.linearGradientColor2.cgColor,
+            UIColor.linearGradientColor3.cgColor
+        ]
+        gradient.startPoint = .init(x: 0.3, y: 1)
+        gradient.endPoint = .init(x: 1, y: 0)
+        gradient.locations = [0, 0.7, 1]
     }
 }
