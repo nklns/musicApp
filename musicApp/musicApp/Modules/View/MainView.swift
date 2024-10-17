@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainView: UIView {
     // MARK: - UI Elements
+    
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -29,14 +32,19 @@ class MainView: UIView {
 
 private extension MainView {
     func setupViews() {
-        addSubviews()
+        addSubviews(tableView)
     }
     
     func setupAppearance() {
         backgroundColor = .gray
+        tableView.backgroundColor = .white
     }
     
     func setupLayout() {
-        
+        tableView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(500)
+            $0.centerY.equalToSuperview()
+        }
     }
 }
