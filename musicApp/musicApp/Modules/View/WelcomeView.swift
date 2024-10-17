@@ -22,6 +22,7 @@ final class WelcomeView: UIView {
     /// Таблица для отображения доступных подписок
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
+    /// Расстояние между секциями таблицы. Устанавливается для разделения контента
     let spaceBetweenSections: CGFloat = 10
     
     private let titleLabel = UILabel()
