@@ -6,14 +6,21 @@
 //
 
 import UIKit
+import SnapKit
 
-class MainViewTableCell: UITableViewCell {
+final class MainViewTableCell: UITableViewCell {
     // MARK: - UI Elements
-    
+    let songNameLabel = UILabel()
+    let artistNameLabel = UILabel()
+    let albumImageView = UIImageView()
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupViews()
+        setupAppearance()
+        setupLayout()
     }
     
     @available(*, unavailable)
@@ -24,11 +31,24 @@ class MainViewTableCell: UITableViewCell {
 
 // MARK: - Public Methods
 extension MainViewTableCell {
-    
+    func configure(with model: MainViewCellModel) {
+        self.songNameLabel.text = model.songName
+        self.artistNameLabel.text = model.artistName
+        self.albumImageView.image = model.albumImage
+    }
 }
 
 // MARK: - Private Methods
-
 private extension MainViewTableCell {
+    func setupViews() {
+        addSubviews()
+    }
     
+    func setupAppearance() {
+        backgroundColor = .cyan
+    }
+    
+    func setupLayout() {
+        
+    }
 }

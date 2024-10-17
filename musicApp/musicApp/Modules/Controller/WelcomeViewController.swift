@@ -7,8 +7,9 @@
 
 import UIKit
 
-class WelcomeViewController: GenericViewController<WelcomeView> {
+final class WelcomeViewController: GenericViewController<WelcomeView> {
     
+    // TODO: - Посмотреть по приватности элементов
     var welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
     
     let spaceBetweenSections: CGFloat = 10

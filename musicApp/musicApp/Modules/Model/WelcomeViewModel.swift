@@ -14,9 +14,3 @@ struct WelcomeViewCellModel {
     let title: String
     let description: String
 }
-
-struct SongListCellModel {
-    let songName: String
-    let artistName: String
-    let albumImage: UIImage
-}

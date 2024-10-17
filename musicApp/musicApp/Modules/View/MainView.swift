@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainView: UIView {
+final class MainView: UIView {
     // MARK: - UI Elements
     
     let tableView = UITableView(frame: .zero, style: .insetGrouped)

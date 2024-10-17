@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WelcomeViewTableCell: UITableViewCell {
+final class WelcomeViewTableCell: UITableViewCell {
     // MARK: - UI Elements
     
     private let containerView = UIView()
@@ -25,6 +25,7 @@ class WelcomeViewTableCell: UITableViewCell {
         setupLayout()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
