@@ -9,8 +9,14 @@ import Foundation
 import UIKit
 
 
-struct CellModel {
+struct WelcomeViewCellModel {
     let image: UIImage
     let title: String
     let description: String
+}
+
+struct SongListCellModel {
+    let songName: String
+    let artistName: String
+    let albumImage: UIImage
 }

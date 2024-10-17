@@ -9,7 +9,7 @@ import UIKit
 
 class WelcomeViewController: GenericViewController<WelcomeView> {
     
-    var welcomeCells: [CellModel] = MockData.mockData
+    var welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
     
     let spaceBetweenSections: CGFloat = 10
 
@@ -25,7 +25,7 @@ class WelcomeViewController: GenericViewController<WelcomeView> {
 
 private extension WelcomeViewController {
     func setupBehaviour() {
-        rootView.tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
+        rootView.tableView.register(WelcomeViewTableCell.self, forCellReuseIdentifier: "WelcomeViewTableCell")
         rootView.tableView.dataSource = self
         rootView.tableView.delegate = self
         rootView.tableView.isScrollEnabled = false
@@ -45,7 +45,7 @@ extension WelcomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? TableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WelcomeViewTableCell", for: indexPath) as? WelcomeViewTableCell else { return UITableViewCell() }
         
         let welcomeCell = welcomeCells[indexPath.section]
         cell.configure(model: welcomeCell)

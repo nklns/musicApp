@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class TableViewCell: UITableViewCell {
+class WelcomeViewTableCell: UITableViewCell {
     // MARK: - UI Elements
     
     private let containerView = UIView()
@@ -30,11 +30,11 @@ class TableViewCell: UITableViewCell {
     }
 }
 
-extension TableViewCell {
+extension WelcomeViewTableCell {
     // MARK: - Public Methods
     
     /// Метод конфигурации ячейки `TableViewCell`
-    func configure(model: CellModel) {
+    func configure(model: WelcomeViewCellModel) {
         self.symbolImageView.image = model.image
         self.titleLabel.text = model.title
         self.descriptionLabel.text = model.description
@@ -43,7 +43,7 @@ extension TableViewCell {
 
 // MARK: - Private Methods
 
-private extension TableViewCell {
+private extension WelcomeViewTableCell {
     func setupViews() {
         self.addSubviews(containerView)
         containerView.addSubviews(symbolImageView, titleLabel, descriptionLabel)
@@ -85,7 +85,7 @@ private extension TableViewCell {
 }
 
 
-private extension TableViewCell {
+private extension WelcomeViewTableCell {
     func setupContainerView() {
         containerView.backgroundColor = .cyan
         containerView.layer.cornerRadius = 20
