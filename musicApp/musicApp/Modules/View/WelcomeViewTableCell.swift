@@ -10,7 +10,6 @@ import SnapKit
 
 final class WelcomeViewTableCell: UITableViewCell {
     // MARK: - UI Elements
-    
     private let containerView = UIView()
     private let symbolImageView = UIImageView()
     private let titleLabel = UILabel()
@@ -33,7 +32,6 @@ final class WelcomeViewTableCell: UITableViewCell {
 
 extension WelcomeViewTableCell {
     // MARK: - Public Methods
-    
     /// Метод конфигурации ячейки `TableViewCell`
     func configure(model: WelcomeViewCellModel) {
         self.symbolImageView.image = model.image

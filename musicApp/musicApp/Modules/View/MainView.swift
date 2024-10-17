@@ -10,11 +10,12 @@ import SnapKit
 
 final class MainView: UIView {
     // MARK: - UI Elements
-    
+    /// Таблица с отступами между секциями для отображения данных
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
+
+    /// Расстояние между секциями таблицы. Устанавливается для разделения контента
     let spaceBetweenSections: CGFloat = 5
-    
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)

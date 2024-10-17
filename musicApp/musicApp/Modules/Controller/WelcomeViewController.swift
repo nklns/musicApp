@@ -9,8 +9,7 @@ import UIKit
 
 final class WelcomeViewController: GenericViewController<WelcomeView> {
     
-    // TODO: - Посмотреть по приватности элементов
-    var welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
+    private let welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
