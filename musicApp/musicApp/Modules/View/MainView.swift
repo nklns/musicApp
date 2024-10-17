@@ -37,7 +37,7 @@ private extension MainView {
     
     func setupAppearance() {
         backgroundColor = .gray
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
     }
     
     func setupLayout() {

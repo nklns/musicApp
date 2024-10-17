@@ -36,7 +36,7 @@ private extension WelcomeViewController {
     }
 }
 
-extension WelcomeViewController: UITableViewDataSource {
+extension WelcomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -61,8 +61,4 @@ extension WelcomeViewController: UITableViewDataSource {
         return spaceBetweenSections
     }
 
-}
-
-extension WelcomeViewController: UITableViewDelegate {
-    
 }

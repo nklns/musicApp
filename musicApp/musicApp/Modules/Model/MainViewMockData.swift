@@ -10,8 +10,10 @@ import UIKit
 
 struct MainViewMockData {
     static let mockData: [MainViewCellModel] = [
-        .init(songName: "Song 1", artistName: "Artist 1", albumImage: UIImage(named: "album1")!),
-        .init(songName: "Song 2", artistName: "Artist 2", albumImage: UIImage(named: "album2")!),
-        .init(songName: "Song 3", artistName: "Artist 3", albumImage: UIImage(named: "album3")!)
+        .init(songName: "Hero", artistName: "Skillet", albumImage: UIImage(named: "awake")!),
+        .init(songName: "Add Up My Love", artistName: "Clairo", albumImage: UIImage(named: "charm")!),
+        .init(songName: "Прыгну со скалы", artistName: "Король и Шут", albumImage: UIImage(named: "kish")!),
+        .init(songName: "Send Me an Angel", artistName: "Scorpions", albumImage: UIImage(named: "crazyWorld")!),
+        .init(songName: "Sunday", artistName: "The Cranberries", albumImage: UIImage(named: "cranberries")!)
     ]
 }

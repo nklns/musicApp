@@ -9,11 +9,14 @@ import UIKit
 
 final class MainViewController: GenericViewController<MainView> {
     
-    
+    private let songsData = MainViewMockData.mockData
+    private let spaceBetweenSections: CGFloat = 5
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBehaviour()
     }
 }
 
@@ -23,6 +26,8 @@ private extension MainViewController {
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
         rootView.tableView.register(MainViewTableCell.self, forCellReuseIdentifier: "MainViewTableCell")
+        rootView.tableView.sectionHeaderHeight = spaceBetweenSections
+        rootView.tableView.sectionFooterHeight = spaceBetweenSections
     }
 }
 
@@ -31,11 +36,26 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         1
     }
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        <#code#>
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        songsData.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        spaceBetweenSections
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        spaceBetweenSections
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "MainViewTableCell",
+            for: indexPath
+        ) as? MainViewTableCell else { return UITableViewCell() }
+        let songData = songsData[indexPath.section]
+        
+        cell.configure(with: songData)
+        return cell
     }
 }
