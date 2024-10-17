@@ -10,7 +10,6 @@ import UIKit
 final class MainViewController: GenericViewController<MainView> {
     
     private let songsData = MainViewMockData.mockData
-    private let spaceBetweenSections: CGFloat = 5
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -26,8 +25,6 @@ private extension MainViewController {
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
         rootView.tableView.register(MainViewTableCell.self, forCellReuseIdentifier: "MainViewTableCell")
-        rootView.tableView.sectionHeaderHeight = spaceBetweenSections
-        rootView.tableView.sectionFooterHeight = spaceBetweenSections
     }
 }
 
@@ -41,11 +38,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        spaceBetweenSections
+        rootView.spaceBetweenSections
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        spaceBetweenSections
+        rootView.spaceBetweenSections
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

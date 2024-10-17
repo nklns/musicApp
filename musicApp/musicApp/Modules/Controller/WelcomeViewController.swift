@@ -11,8 +11,6 @@ final class WelcomeViewController: GenericViewController<WelcomeView> {
     
     // TODO: - Посмотреть по приватности элементов
     var welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
-    
-    let spaceBetweenSections: CGFloat = 10
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -30,8 +28,6 @@ private extension WelcomeViewController {
         rootView.tableView.dataSource = self
         rootView.tableView.delegate = self
         rootView.tableView.isScrollEnabled = false
-        rootView.tableView.sectionHeaderHeight = spaceBetweenSections
-        rootView.tableView.sectionFooterHeight = spaceBetweenSections
         rootView.tableView.reloadData()
     }
 }
@@ -54,11 +50,11 @@ extension WelcomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return spaceBetweenSections
+        return rootView.spaceBetweenSections
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return spaceBetweenSections
+        return rootView.spaceBetweenSections
     }
 
 }

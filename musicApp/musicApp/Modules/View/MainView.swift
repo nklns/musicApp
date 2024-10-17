@@ -13,6 +13,8 @@ final class MainView: UIView {
     
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
+    let spaceBetweenSections: CGFloat = 5
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +40,8 @@ private extension MainView {
     func setupAppearance() {
         backgroundColor = .gray
         tableView.backgroundColor = .clear
+        tableView.sectionHeaderHeight = spaceBetweenSections
+        tableView.sectionFooterHeight = spaceBetweenSections
     }
     
     func setupLayout() {
