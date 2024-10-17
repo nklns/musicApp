@@ -8,16 +8,26 @@
 import UIKit
 import SnapKit
 
+protocol ButtonTappedDelegate: AnyObject {
+    func buttonTapped()
+}
+
 /// Вью экрана 'Велком' для предложения подписки
-class WelcomeView: UIView {
+final class WelcomeView: UIView {
     // MARK: - UI Elements
     
-    let titleLabel = UILabel()
+    /// Делегат нажатия кнопки `buttonLabel`
+    weak var delegate: ButtonTappedDelegate?
+    
+    /// Таблица для отображения доступных подписок
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
-    let buttonLabel = UIButton()
+    
+    private let titleLabel = UILabel()
+    private let buttonLabel = UIButton()
+    private let trialOfferLabel = UILabel()
     
     // MARK: - Layers
-    let gradient = CAGradientLayer()
+    private let gradient = CAGradientLayer()
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -45,7 +55,7 @@ class WelcomeView: UIView {
 private extension WelcomeView {
     
     func setupViews() {
-        addSubviews(titleLabel, tableView, buttonLabel)
+        addSubviews(titleLabel, tableView, buttonLabel, trialOfferLabel)
     }
     
     func setupAppearance() {
@@ -59,6 +69,7 @@ private extension WelcomeView {
         self.layer.insertSublayer(gradient, at: 0)
         
         setupButtonLabel()
+        setuptrialOfferLabel()
     }
     
     func setupLayout() {
@@ -76,9 +87,14 @@ private extension WelcomeView {
         }
         
         buttonLabel.snp.makeConstraints {
-            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            $0.bottom.equalTo(trialOfferLabel.snp.top).offset(-20)
             $0.horizontalEdges.equalTo(titleLabel)
             $0.height.equalTo(54)
+        }
+        
+        trialOfferLabel.snp.makeConstraints {
+            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-15)
+            $0.centerX.equalToSuperview()
         }
     }
 }
@@ -108,5 +124,26 @@ private extension WelcomeView {
         buttonLabel.backgroundColor = UIColor.button
         buttonLabel.layer.cornerRadius = 20
         buttonLabel.layer.masksToBounds = true
+        buttonLabel.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    func setuptrialOfferLabel() {
+        trialOfferLabel.text = "Попробуй 7 дней бесплатно, затем -\n149 руб/месяц или 1790 руб/год"
+        trialOfferLabel.textColor = .darkGray
+        trialOfferLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        trialOfferLabel.numberOfLines = 0
+        trialOfferLabel.textAlignment = .center
+    }
+    
+    @objc
+    func buttonTapped(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.2) {
+            sender.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.2) {
+                sender.transform = .identity
+            }
+        }
+        delegate?.buttonTapped()
     }
 }
