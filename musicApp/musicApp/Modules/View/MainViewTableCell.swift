@@ -55,6 +55,7 @@ private extension MainViewTableCell {
     
     func setupAppearance() {
         backgroundColor = .clear
+        selectionStyle = .none
         
         setupContainerView()
         setupAlbumImageView()
