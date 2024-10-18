@@ -48,7 +48,7 @@ final class MainView: UIView {
 
 private extension MainView {
     func setupViews() {
-        addSubviews(tableView, titleLabel, playButton, shuffleButton)
+        addSubviews(tableView, titleLabel, buttonStackView)
     }
     
     func setupAppearance() {
@@ -57,6 +57,7 @@ private extension MainView {
         setupTableView()
         setupGradient()
         setupTitleLabel()
+        setupButtonStackView()
     }
     
     func setupLayout() {
@@ -65,16 +66,9 @@ private extension MainView {
             $0.leading.equalToSuperview().offset(20)
         }
         
-        playButton.snp.makeConstraints {
-            $0.leading.equalTo(titleLabel.snp.leading)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
-            $0.width.equalTo(160)
-        }
-        
-        shuffleButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.top.equalTo(playButton)
-            $0.width.equalTo(160)
+        buttonStackView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
         }
         
         tableView.snp.makeConstraints {
@@ -106,5 +100,13 @@ private extension MainView {
         titleLabel.text = "Твоя библиотека"
         titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
         titleLabel.textColor = .white
+    }
+    
+    func setupButtonStackView() {
+        buttonStackView.axis = .horizontal
+        buttonStackView.spacing = 10
+        buttonStackView.alignment = .center
+        buttonStackView.distribution = .fillEqually
+        [playButton, shuffleButton].forEach { buttonStackView.addArrangedSubview($0) }
     }
 }
