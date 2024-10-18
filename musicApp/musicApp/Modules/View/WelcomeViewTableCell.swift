@@ -52,6 +52,8 @@ private extension WelcomeViewTableCell {
     
     func setupAppearance() {
         self.backgroundColor = .clear
+        self.selectionStyle = .none
+        
         symbolImageView.contentMode = .scaleAspectFit
         
         setupContainerView()
