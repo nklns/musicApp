@@ -8,14 +8,15 @@
 import UIKit
 import SnapKit
 
+/// Протокол для делегирования события нажатия кнопки
 protocol ButtonTappedDelegate: AnyObject {
+    /// Метод, вызываемый при нажатии кнопки
     func buttonTapped()
 }
 
 /// Вью экрана 'Велком' для предложения подписки
 final class WelcomeView: UIView {
     // MARK: - UI Elements
-    
     /// Делегат нажатия кнопки `buttonLabel`
     weak var delegate: ButtonTappedDelegate?
     
@@ -54,15 +55,12 @@ final class WelcomeView: UIView {
 }
 
 // MARK: - Private Methods
-
 private extension WelcomeView {
-    
     func setupViews() {
         addSubviews(titleLabel, tableView, buttonLabel, trialOfferLabel)
     }
     
     func setupAppearance() {
-        
         tableView.backgroundColor = .clear
         tableView.sectionHeaderHeight = spaceBetweenSections
         tableView.sectionFooterHeight = spaceBetweenSections

@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 
+
+/// Ячейка таблицы для экрана приветствия
 final class WelcomeViewTableCell: UITableViewCell {
     // MARK: - UI Elements
     private let containerView = UIView()

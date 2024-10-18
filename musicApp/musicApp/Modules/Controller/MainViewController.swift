@@ -7,8 +7,9 @@
 
 import UIKit
 
+/// Контроллер экрана 'Main', отображающий список песен
 final class MainViewController: GenericViewController<MainView> {
-    
+    // MARK: - Data
     private let songsData = MainViewMockData.mockData
     
     // MARK: - Life Cycle
@@ -28,6 +29,7 @@ private extension MainViewController {
     }
 }
 
+// MARK: - UITableViewDelegate & UITableViewDataSource
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1

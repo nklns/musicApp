@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Ячейка таблицы для отображения песни и исполнителя на главном экране
 final class MainViewTableCell: UITableViewCell {
     // MARK: - UI Elements
     private let songNameLabel = UILabel()
@@ -37,6 +38,7 @@ final class MainViewTableCell: UITableViewCell {
 
 // MARK: - Public Methods
 extension MainViewTableCell {
+    /// Метод конфигурации ячейки с данными модели `MainViewCellModel`
     func configure(with model: MainViewCellModel) {
         self.songNameLabel.text = model.songName
         self.artistNameLabel.text = model.artistName

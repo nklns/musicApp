@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Кастомная кнопка для управления воспроизведением и перемешиванием
 final class PlayBackButton: UIButton {
     // MARK: - UI Elements
     
@@ -16,6 +17,7 @@ final class PlayBackButton: UIButton {
     private let buttonControl: PlaybackControls
     
     // MARK: - Init
+    /// Инициализация с указанием типа кнопки
     init(buttonControl: PlaybackControls) {
         self.buttonControl = buttonControl
         super.init(frame: .zero)

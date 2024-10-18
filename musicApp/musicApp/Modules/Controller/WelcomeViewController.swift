@@ -7,8 +7,9 @@
 
 import UIKit
 
+/// Контроллер экрана 'Welcome', отображающий информацию для пользователя о подписке
 final class WelcomeViewController: GenericViewController<WelcomeView> {
-    
+    // MARK: - Data
     private let welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
 
     // MARK: - Life Cycle
@@ -20,7 +21,6 @@ final class WelcomeViewController: GenericViewController<WelcomeView> {
 }
 
 // MARK: - Private Methods
-
 private extension WelcomeViewController {
     func setupBehaviour() {
         rootView.tableView.register(WelcomeViewTableCell.self, forCellReuseIdentifier: "WelcomeViewTableCell")
@@ -31,6 +31,7 @@ private extension WelcomeViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension WelcomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
@@ -55,5 +56,4 @@ extension WelcomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return rootView.spaceBetweenSections
     }
-
 }

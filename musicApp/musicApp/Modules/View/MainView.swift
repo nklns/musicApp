@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// Основное вью для экрана с таблицей и кнопками управления воспроизведением
 final class MainView: UIView {
     // MARK: - UI Elements
     /// Таблица с отступами между секциями для отображения данных
@@ -45,7 +46,6 @@ final class MainView: UIView {
 }
 
 // MARK: - Private Methods
-
 private extension MainView {
     func setupViews() {
         addSubviews(tableView, titleLabel, buttonStackView)
