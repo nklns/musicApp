@@ -13,11 +13,12 @@ final class MainViewTableCell: UITableViewCell {
     private let songNameLabel = UILabel()
     private let artistNameLabel = UILabel()
     private let albumImageView = UIImageView()
+    private let symbolEllipsisImageView = UIImageView()
     
     private let containerView = UIView()
     
     // MARK: - Constants
-    private let cornerRadius: CGFloat = 10
+    private let cornerRadius: CGFloat = 15
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -46,7 +47,7 @@ extension MainViewTableCell {
 // MARK: - Private Methods
 private extension MainViewTableCell {
     func setupViews() {
-        containerView.addSubviews(albumImageView, songNameLabel, artistNameLabel)
+        containerView.addSubviews(albumImageView, songNameLabel, artistNameLabel, symbolEllipsisImageView)
         addSubviews(containerView)
     }
     
@@ -57,6 +58,7 @@ private extension MainViewTableCell {
         setupAlbumImageView()
         setupSongNameLabel()
         setupArtistNameLabel()
+        setupSymbolEllipsisImageView()
     }
     
     func setupLayout() {
@@ -81,6 +83,11 @@ private extension MainViewTableCell {
             $0.leading.equalTo(songNameLabel.snp.leading)
             $0.bottom.equalTo(albumImageView.snp.bottom).offset(-8)
         }
+        
+        symbolEllipsisImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-12)
+        }
     }
 }
 
@@ -93,7 +100,7 @@ private extension MainViewTableCell {
     
     func setupContainerView() {
         containerView.backgroundColor = .cyan
-        containerView.layer.cornerRadius = cornerRadius
+        containerView.layer.cornerRadius = cornerRadius * 1.5
         containerView.layer.masksToBounds = true
     }
     
@@ -107,5 +114,11 @@ private extension MainViewTableCell {
         artistNameLabel.font = .systemFont(ofSize: 13, weight: .regular)
         artistNameLabel.textColor = .purple
         artistNameLabel.numberOfLines = 0
+    }
+    
+    func setupSymbolEllipsisImageView() {
+        symbolEllipsisImageView.image = UIImage(systemName: "ellipsis")?
+            .applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 25, weight: .bold)))
+        symbolEllipsisImageView.tintColor = .purple
     }
 }
