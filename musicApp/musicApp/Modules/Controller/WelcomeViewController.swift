@@ -7,11 +7,9 @@
 
 import UIKit
 
-class WelcomeViewController: GenericViewController<WelcomeView> {
+final class WelcomeViewController: GenericViewController<WelcomeView> {
     
-    var welcomeCells: [CellModel] = MockData.mockData
-    
-    let spaceBetweenSections: CGFloat = 10
+    private let welcomeCells: [WelcomeViewCellModel] = WelcomeViewMockData.mockData
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -25,17 +23,15 @@ class WelcomeViewController: GenericViewController<WelcomeView> {
 
 private extension WelcomeViewController {
     func setupBehaviour() {
-        rootView.tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
+        rootView.tableView.register(WelcomeViewTableCell.self, forCellReuseIdentifier: "WelcomeViewTableCell")
         rootView.tableView.dataSource = self
         rootView.tableView.delegate = self
         rootView.tableView.isScrollEnabled = false
-        rootView.tableView.sectionHeaderHeight = spaceBetweenSections
-        rootView.tableView.sectionFooterHeight = spaceBetweenSections
         rootView.tableView.reloadData()
     }
 }
 
-extension WelcomeViewController: UITableViewDataSource {
+extension WelcomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -45,7 +41,7 @@ extension WelcomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? TableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WelcomeViewTableCell", for: indexPath) as? WelcomeViewTableCell else { return UITableViewCell() }
         
         let welcomeCell = welcomeCells[indexPath.section]
         cell.configure(model: welcomeCell)
@@ -53,15 +49,11 @@ extension WelcomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return spaceBetweenSections
+        return rootView.spaceBetweenSections
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return spaceBetweenSections
+        return rootView.spaceBetweenSections
     }
 
-}
-
-extension WelcomeViewController: UITableViewDelegate {
-    
 }

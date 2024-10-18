@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-struct CellModel {
+struct WelcomeViewCellModel {
     let image: UIImage
     let title: String
     let description: String

@@ -22,6 +22,9 @@ final class WelcomeView: UIView {
     /// Таблица для отображения доступных подписок
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
+    /// Расстояние между секциями таблицы. Устанавливается для разделения контента
+    let spaceBetweenSections: CGFloat = 10
+    
     private let titleLabel = UILabel()
     private let buttonLabel = UIButton()
     private let trialOfferLabel = UILabel()
@@ -61,7 +64,8 @@ private extension WelcomeView {
     func setupAppearance() {
         
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+        tableView.sectionHeaderHeight = spaceBetweenSections
+        tableView.sectionFooterHeight = spaceBetweenSections
         
         setupTitleLabel()
         
