@@ -17,6 +17,7 @@ final class WelcomeViewController: GenericViewController<WelcomeView> {
         super.viewDidLoad()
         
         setupBehaviour()
+        setupDelegates()
     }
 }
 
@@ -25,9 +26,20 @@ private extension WelcomeViewController {
     func setupBehaviour() {
         rootView.tableView.register(WelcomeViewTableCell.self, forCellReuseIdentifier: "WelcomeViewTableCell")
         rootView.tableView.dataSource = self
-        rootView.tableView.delegate = self
         rootView.tableView.isScrollEnabled = false
         rootView.tableView.reloadData()
+    }
+    
+    func setupDelegates() {
+        rootView.delegate = self
+        rootView.tableView.delegate = self
+    }
+}
+
+extension WelcomeViewController: ButtonTappedDelegate {
+    func buttonTapped() {
+        let mainVC = MainViewController()
+        navigationController?.pushViewController(mainVC, animated: true)
     }
 }
 

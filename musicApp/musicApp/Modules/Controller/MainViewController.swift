@@ -17,15 +17,25 @@ final class MainViewController: GenericViewController<MainView> {
         super.viewDidLoad()
         
         setupBehaviour()
+        setupDelegates()
+        disableBackNavigation()
     }
 }
 
 // MARK: - Private Methods
 private extension MainViewController {
     func setupBehaviour() {
+        rootView.tableView.register(MainViewTableCell.self, forCellReuseIdentifier: "MainViewTableCell")
+    }
+    
+    func setupDelegates() {
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
-        rootView.tableView.register(MainViewTableCell.self, forCellReuseIdentifier: "MainViewTableCell")
+    }
+    
+    func disableBackNavigation() {
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
 }
 
