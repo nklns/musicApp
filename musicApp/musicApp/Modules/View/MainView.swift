@@ -15,8 +15,8 @@ final class MainView: UIView {
     
     private let titleLabel = UILabel()
     private let gradient = CAGradientLayer()
-    private let playButton = UIButton()
-    private let shuffleButton = UIButton()
+    private let playButton = PlayBackButton(buttonControl: .playButton)
+    private let shuffleButton = PlayBackButton(buttonControl: .shuffleButton)
     private let buttonStackView = UIStackView()
     
     // MARK: - Constants
@@ -48,7 +48,7 @@ final class MainView: UIView {
 
 private extension MainView {
     func setupViews() {
-        addSubviews(tableView, titleLabel, playButton)
+        addSubviews(tableView, titleLabel, playButton, shuffleButton)
     }
     
     func setupAppearance() {
@@ -57,7 +57,6 @@ private extension MainView {
         setupTableView()
         setupGradient()
         setupTitleLabel()
-        setupPlayButton()
     }
     
     func setupLayout() {
@@ -69,7 +68,13 @@ private extension MainView {
         playButton.snp.makeConstraints {
             $0.leading.equalTo(titleLabel.snp.leading)
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
-//            $0.width.equalTo(180)
+            $0.width.equalTo(160)
+        }
+        
+        shuffleButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.top.equalTo(playButton)
+            $0.width.equalTo(160)
         }
         
         tableView.snp.makeConstraints {
@@ -101,27 +106,5 @@ private extension MainView {
         titleLabel.text = "Твоя библиотека"
         titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
         titleLabel.textColor = .white
-    }
-    
-    func setupPlayButton() {
-        let NSAttributetString = NSAttributedString(string: "Слушать", attributes: [
-            .foregroundColor: UIColor.purple,
-            .font: UIFont.systemFont(ofSize: 13, weight: .bold)
-        ])
-        let attributetString = AttributedString(NSAttributetString)
-        
-        var config = UIButton.Configuration.filled()
-        config.background.backgroundColor = .white.withAlphaComponent(0.9)
-        config.image = UIImage(systemName: "play.fill")?
-            .applyingSymbolConfiguration(.init(font: .systemFont(ofSize: 8, weight: .bold)))?
-            .withTintColor(.purple, renderingMode: .alwaysOriginal)
-        config.attributedTitle = attributetString
-        config.imagePlacement = .trailing
-        config.titleAlignment = .leading
-        config.background.cornerRadius = 15
-        config.contentInsets = .init(top: 10, leading: 20, bottom: 10, trailing: 20)
-        config.imagePadding = 75
-        
-        playButton.configuration = config
     }
 }

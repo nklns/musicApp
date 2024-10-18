@@ -13,3 +13,8 @@ struct MainViewCellModel {
     let artistName: String
     let albumImage: UIImage
 }
+
+enum PlaybackControls {
+    case playButton
+    case shuffleButton
+}
