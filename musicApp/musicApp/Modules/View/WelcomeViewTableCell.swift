@@ -86,7 +86,7 @@ private extension WelcomeViewTableCell {
 
 private extension WelcomeViewTableCell {
     func setupContainerView() {
-        containerView.backgroundColor = .cyan
+        containerView.backgroundColor = .white.withAlphaComponent(0.9)
         containerView.layer.cornerRadius = 20
         containerView.layer.masksToBounds = true
     }

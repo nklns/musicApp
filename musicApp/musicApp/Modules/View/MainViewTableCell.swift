@@ -99,7 +99,7 @@ private extension MainViewTableCell {
     }
     
     func setupContainerView() {
-        containerView.backgroundColor = .cyan
+        containerView.backgroundColor = .white.withAlphaComponent(0.9)
         containerView.layer.cornerRadius = cornerRadius * 1.5
         containerView.layer.masksToBounds = true
     }
