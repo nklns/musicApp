@@ -15,6 +15,8 @@ final class MainView: UIView {
 
     /// Расстояние между секциями таблицы. Устанавливается для разделения контента
     let spaceBetweenSections: CGFloat = 5
+    
+    private let gradient = CAGradientLayer()
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -23,6 +25,12 @@ final class MainView: UIView {
         setupViews()
         setupAppearance()
         setupLayout()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        gradient.frame = bounds
     }
     
     @available(*, unavailable)
@@ -39,9 +47,10 @@ private extension MainView {
     }
     
     func setupAppearance() {
-        backgroundColor = .gray
-
+        self.layer.insertSublayer(gradient, at: 0)
+        
         setupTableView()
+        setupGradient()
     }
     
     func setupLayout() {
@@ -57,5 +66,16 @@ private extension MainView {
         tableView.sectionHeaderHeight = spaceBetweenSections
         tableView.sectionFooterHeight = spaceBetweenSections
         tableView.isScrollEnabled = false
+    }
+    
+    func setupGradient() {
+        gradient.colors = [
+            UIColor.linearGradientColor1.cgColor,
+            UIColor.linearGradientColor2.cgColor,
+            UIColor.linearGradientColor3.cgColor
+        ]
+        gradient.startPoint = .init(x: 0.5, y: 1)
+        gradient.endPoint = .init(x: 0.5, y: 0)
+        gradient.locations = [0, 0.4, 1]
     }
 }
