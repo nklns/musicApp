@@ -46,7 +46,7 @@ extension MainViewTableCell {
 // MARK: - Private Methods
 private extension MainViewTableCell {
     func setupViews() {
-        containerView.addSubviews(albumImageView)
+        containerView.addSubviews(albumImageView, songNameLabel, artistNameLabel)
         addSubviews(containerView)
     }
     
@@ -55,6 +55,8 @@ private extension MainViewTableCell {
         
         setupContainerView()
         setupAlbumImageView()
+        setupSongNameLabel()
+        setupArtistNameLabel()
     }
     
     func setupLayout() {
@@ -63,11 +65,21 @@ private extension MainViewTableCell {
         }
         
         albumImageView.snp.makeConstraints {
-            $0.top.equalTo(self.snp.top).offset(12)
-            $0.bottom.equalTo(self.snp.bottom).offset(-12)
+            $0.top.equalTo(containerView.snp.top).offset(12)
+            $0.bottom.equalTo(containerView.snp.bottom).offset(-12)
             $0.leading.equalToSuperview().offset(12)
             $0.height.equalTo(50)
             $0.width.equalTo(50)
+        }
+        
+        songNameLabel.snp.makeConstraints {
+            $0.leading.equalTo(albumImageView.snp.trailing).offset(16)
+            $0.top.equalTo(albumImageView.snp.top).offset(8)
+        }
+        
+        artistNameLabel.snp.makeConstraints {
+            $0.leading.equalTo(songNameLabel.snp.leading)
+            $0.bottom.equalTo(albumImageView.snp.bottom).offset(-8)
         }
     }
 }
@@ -83,5 +95,17 @@ private extension MainViewTableCell {
         containerView.backgroundColor = .cyan
         containerView.layer.cornerRadius = cornerRadius
         containerView.layer.masksToBounds = true
+    }
+    
+    func setupSongNameLabel() {
+        songNameLabel.font = .systemFont(ofSize: 13, weight: .semibold)
+        songNameLabel.textColor = .black
+        songNameLabel.numberOfLines = 0
+    }
+    
+    func setupArtistNameLabel() {
+        artistNameLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        artistNameLabel.textColor = .purple
+        artistNameLabel.numberOfLines = 0
     }
 }

@@ -40,9 +40,8 @@ private extension MainView {
     
     func setupAppearance() {
         backgroundColor = .gray
-        tableView.backgroundColor = .clear
-        tableView.sectionHeaderHeight = spaceBetweenSections
-        tableView.sectionFooterHeight = spaceBetweenSections
+
+        setupTableView()
     }
     
     func setupLayout() {
@@ -51,5 +50,12 @@ private extension MainView {
             $0.height.equalTo(500)
             $0.centerY.equalToSuperview()
         }
+    }
+    
+    func setupTableView() {
+        tableView.backgroundColor = .clear
+        tableView.sectionHeaderHeight = spaceBetweenSections
+        tableView.sectionFooterHeight = spaceBetweenSections
+        tableView.isScrollEnabled = false
     }
 }
